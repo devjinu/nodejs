@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://jason:12345@sample.9oiwe.mongodb.net/myFirstData
     .catch(err => console.log(err))
 
 
-app.get('/', (req, res) => res.send('Hello nodejs! nodemon connection success!'))
+app.get('/', (req, res) => res.send('Hello nodejs! heroku setting complete!'))
 
 app.post('/register', (req, res) => {
 
