@@ -4,7 +4,7 @@ const port = 5000 // 포트 번호.
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key'); // 몽고DB key값 바인딩.
-
+const {auth} = require('./middleware/auth');
 const {User} = require("./models/User");
 
 // application/x-www-form-urlencoded
@@ -26,7 +26,7 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => res.send('Hello World! 안녕하세요><'))
 
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
 
     // 회원가입 할 때 필요한 정보들을 client에서 가져오면 그것들을 DB에 넣어준다.
     const user = new User(req.body)
@@ -37,7 +37,7 @@ app.post('/register', (req, res) => {
     })
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
 
     console.log('ping')
     // 요청된 이메일 주소를 DB에서 검색.
@@ -69,5 +69,18 @@ app.post('/login', (req, res) => {
         })
     })
 })
-
+// role 0 -> 일반유저, 1 -> admin, 2-> 특정 부서 admin
+app.get('/api/users/auth',auth,(req,res)=>{
+    // 여기까지 middleware를 통과해 왔다 -> Authentication이 true
+    res.status(200).json({
+        _id:req.user._id,
+        isAdmin : req.user.role === 0? false : true,
+        isAuth:true,
+        email: req.user.email,
+        name : req.user.name,
+        lastname:req.user.lastname,
+        role:req.user.role,
+        image:req.user.image
+    })
+})
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

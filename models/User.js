@@ -78,7 +78,16 @@ userSchema.methods.generateToken = function (cb) {
         cb(null, user)
     })
 }
+userSchema.statics.findByToken = function(token,cb){
+    var user = this;
+    // user._id + '' = token
 
+    // 토큰을 decode한다
+    jwt.verify(token,'secterToken',function (err,decode){
+        // 유저 아이디를 이용해 유저를 찾음 ->
+        }
+    )
+}
 const User = mongoose.model('User', userSchema)
 
 module.exports = {User}
