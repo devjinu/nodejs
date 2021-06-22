@@ -3,9 +3,9 @@ const app = express() // 새로운 express 앱을 만듦.
 const port = 5000 // 포트 번호.
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const config = require('./config/key'); // 몽고DB key값 바인딩.
-const {auth} = require('./middleware/auth');
-const {User} = require("./models/User");
+const config = require('../server/config/key'); // 몽고DB key값 바인딩.
+const {auth} = require('../server/middleware/auth');
+const {User} = require("../server/models/User");
 
 // application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
@@ -24,6 +24,9 @@ mongoose.connect('mongodb+srv://jason:12345@sample.9oiwe.mongodb.net/myFirstData
     .catch(err => console.log(err))
 
 app.get('/', (req, res) => res.send('Hello nodejs'))
+app.get('/api/hello',(req,res)=>{
+    res.send('Hello')
+})
 
 app.post('/api/users/register', (req, res) => {
 
