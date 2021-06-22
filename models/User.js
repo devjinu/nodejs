@@ -57,8 +57,8 @@ userSchema.methods.comparePassword = function(plainPassword, cb) {
 
     // plainPassword와 암호화된 비밀번호가 일치하는지 확인
     bcrypt.compare(plainPassword, this.password, function(err, isMatch) {
-        if(err) return cb(err), // 비밀번호 잁치x
-        cb(null, isMatch) // 비밀번호 일치
+        if(err) return cb(err); // 비밀번호 잁치x
+        cb(null, isMatch); // 비밀번호 일치
     })
 
 }
@@ -73,8 +73,8 @@ userSchema.methods.generateToken = function(cb) {
 
     user.token = token
     user.save(function(err, user) {
-        if(err) return cb(err),
-        cb(null, user)
+        if(err) return cb(err);
+        cb(null, user);
     })
 }
 
