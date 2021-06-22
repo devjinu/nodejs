@@ -1,11 +1,10 @@
 {
   "name": "boiler-plate",
   "version": "1.0.0",
-  "description": "",
+  "description": "\"# nodejs\"",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "backend": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -23,5 +22,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonjinu/nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moonjinu/nodejs/issues"
+  },
+  "homepage": "https://github.com/moonjinu/nodejs#readme"
 }
